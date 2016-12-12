@@ -1,5 +1,5 @@
 # liars-dice
-
+### Docs
 ```javascript
   Class LiarsDice
 
@@ -20,3 +20,7 @@
       Returns a statement explicitly saying if the claim is true or false
       Takes no parameters and obtains the necessary dice count and value from the data stored in a stack internally
  ```
+ 
+### To be able to run the tests, install ```jasmine-node``` globally & run the npm script
+   ```npm i -g jasmine-node```<br>
+   ```npm run jasmine-node```
