@@ -1,15 +1,6 @@
 'use strict';
 
-var Player = function () {
-	this._diceValues = [];
-};
-
-Player.prototype.rollDice = function () {
-	var noOfDice = 5;
-	for (var i = 0; i < noOfDice; i++) {
-		this._diceValues.push(Math.ceil(Math.random() * 5));
-	}
-};
+var Player = require('./Player');
 
 var LiarsDice = function ( noOfPlayers ) {
 	this._playerCount = noOfPlayers;
@@ -110,7 +101,7 @@ LiarsDice.prototype = {
 			}
 		});
 
-		return 'The claim is ' + (c == diceCount);
+		return 'The claim is ' + ( c == diceCount );
 	},
 
 	_probability: function ( k, n ) {
@@ -132,23 +123,5 @@ LiarsDice.prototype = {
 	}
 
 };
-
-/* Initialize the game */
-var game = new LiarsDice(4);
-game.init();
-
-/* Get player dice info */
-var randomIndex = Math.floor(Math.random() * 5);
-var playerDiceVal = game.getPlayerDiceValues(1)[randomIndex];
-var playerValueCount = game.getPlayerValueCount(1, playerDiceVal);
-
-console.log('playerDiceVal', playerDiceVal);
-console.log('playerValueCount', playerValueCount);
-
-game.move(1, 1, playerDiceVal);
-console.log();
-console.log(game.claim(3, playerDiceVal));
-console.log();
-console.log(game.challenge());
 
 module.exports = LiarsDice;
