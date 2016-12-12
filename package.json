@@ -1,0 +1,24 @@
+{
+  "name": "liars-dice",
+  "version": "1.0.0",
+  "description": "",
+  "main": "LiarsDice.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "jasmine-node": "jasmine-node --verbose spec"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/AdiedX/liars-dice.git"
+  },
+  "author": "Adi",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/AdiedX/liars-dice/issues"
+  },
+  "homepage": "https://github.com/AdiedX/liars-dice#readme",
+  "devDependencies": {
+    "jasmine": "^2.5.2",
+    "jasmine-console-reporter": "^1.2.7"
+  }
+}
