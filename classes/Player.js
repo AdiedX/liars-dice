@@ -6,7 +6,7 @@ var Player = function () {
 
 Player.prototype.rollDice = function () {
 	var noOfDice = 5;
-	for (var i = 0; i < noOfDice; i++) {
+	for ( var i = 0; i < noOfDice; i++ ) {
 		this._diceValues.push(Math.ceil(Math.random() * 5));
 	}
 };

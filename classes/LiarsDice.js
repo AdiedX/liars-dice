@@ -34,8 +34,8 @@ LiarsDice.prototype = {
 
 	getValueCount: function ( diceValue ) {
 		var c = 0;
-		this._players.forEach(function (player) {
-			player['_diceValues'].forEach(function (val) {
+		this._players.forEach(function ( player ) {
+			player['_diceValues'].forEach(function ( val ) {
 				if ( val == diceValue ) { c++; }
 			});
 		});
@@ -81,24 +81,25 @@ LiarsDice.prototype = {
 
 	},
 
+	/* Verify the validity of the last claim */
 	challenge: function () {
 		var claim = this._claims.pop(),
 				diceCount = claim.diceCount,
-				value = claim.diceCount;
-
-		/* Verify the validity of the last claim */
-		var diceValues = [],
+				value = claim.value,
+				diceValues = [],
 				p = this._playerCount,
 				c = 0;
 
 		for ( var i = 0; i < p; i++ ) {
-			diceValues.concat(this.getValueCount(i));
+			diceValues.push(this.getPlayerDiceValues(i));
 		}
 
-		diceValues.forEach(function( val ) {
-			if(val == value) {
-				c++;
-			}
+		diceValues.forEach(function( player ) {
+			player.forEach(function( val ) {
+				if(val == value) {
+					c++;
+				}
+			})
 		});
 
 		return 'The claim is ' + ( c == diceCount );
