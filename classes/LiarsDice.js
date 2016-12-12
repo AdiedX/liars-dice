@@ -27,7 +27,9 @@ LiarsDice.prototype = {
 	getPlayerValueCount: function ( playerNo, playerDiceVal ) {
 		var c = 0;
 		this._players[playerNo]['_diceValues'].forEach(function (val) {
-			if ( val == playerDiceVal ) { c++; }
+			if ( val == playerDiceVal ) {
+				c++;
+			}
 		});
 		return c;
 	},
@@ -36,7 +38,9 @@ LiarsDice.prototype = {
 		var c = 0;
 		this._players.forEach(function ( player ) {
 			player['_diceValues'].forEach(function ( val ) {
-				if ( val == diceValue ) { c++; }
+				if ( val == diceValue ) {
+					c++;
+				}
 			});
 		});
 		return c;
@@ -49,14 +53,23 @@ LiarsDice.prototype = {
 			throw 'dice count cannot exceed players value count';
 		}
 
-		this._moves.push( { player: player, diceCount: diceCount, value: value } );
+		this._moves.push({
+			player: player,
+			diceCount: diceCount,
+			value: value
+		});
+
+		console.log('Player ' + player + ' put ' + diceCount + ' ' + value + '\'s on the table');
 	},
 
 	/* Make a claim and return whether it is probable  */
 	claim: function ( diceCount, value ) {
 		var cumulativeProbability = 0, k, n;
 
-		this._claims.push( { diceCount: diceCount, value: value } );
+		this._claims.push({
+			diceCount: diceCount,
+			value: value 
+		});
 
 		k = ( diceCount - this._currentValCount );
 		n = ( 20 - this._currentValCount );
@@ -65,18 +78,18 @@ LiarsDice.prototype = {
 			cumulativeProbability += this._probability( i, n );
 		}
 
-		console.log('cumulativeProbability', cumulativeProbability);
+		console.log('Probability of claim: ', cumulativeProbability);
 
 		if ( cumulativeProbability > 0.9 ) {
-			return 'It is very likely to be true!';
+			return ('It is very likely to be true!');
 		} else if ( cumulativeProbability > 0.5 ) {
-			return 'It is a probable claim';
+			return ('It is a probable claim');
 		} else if ( cumulativeProbability < 0.001 ) {
-			return 'Ridiculous claim! There is now way that\'s true!';
+			return ('Ridiculous claim! There is now way that\'s true!');
 		} else if ( cumulativeProbability < 0.1 ) {
-			return 'It is very likely not a true claim';
+			return ('It is very likely not a true claim');
 		} else if ( cumulativeProbability < 0.5 ) {
-			return 'It is not a probable claim';
+			return ('It is not a probable claim');
 		}
 
 	},
@@ -101,6 +114,9 @@ LiarsDice.prototype = {
 				}
 			})
 		});
+
+		this._diceValues = diceValues;
+		this._diceCount = diceCount;
 
 		return 'The claim is ' + ( c == diceCount );
 	},
