@@ -1,13 +1,15 @@
 'use strict';
 
 var LiarsDice = require('../classes/LiarsDice');
+var seedRandom = require('seedrandom');
+var randomGenerator = seedRandom();
 
 describe('Liars Dice', function() {
 	var game, randomIndex, playerDiceVal, playerValueCount;
 	beforeEach(function() {
 		game = new LiarsDice(4);
 		game.init();
-		randomIndex = Math.floor(Math.random() * 5);
+		randomIndex = Math.floor(randomGenerator() * 5);
 		playerDiceVal = game.getPlayerDiceValues(1)[randomIndex];
 		playerValueCount = game.getPlayerValueCount(1, playerDiceVal);
 

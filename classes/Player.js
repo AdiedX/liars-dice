@@ -1,5 +1,11 @@
 'use strict';
 
+/*
+ * Autoseeded ARC4-based PRNG.  Reasonably unpredictable
+ */
+var seedRandom = require('seedrandom');
+var randomGenerator = seedRandom();
+
 var Player = function () {
 	this._diceValues = [];
 };
@@ -7,7 +13,7 @@ var Player = function () {
 Player.prototype.rollDice = function () {
 	var noOfDice = 5;
 	for ( var i = 0; i < noOfDice; i++ ) {
-		this._diceValues.push(Math.ceil(Math.random() * 5));
+		this._diceValues.push(Math.ceil(randomGenerator() * 5));
 	}
 };
 
