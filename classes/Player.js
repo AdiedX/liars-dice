@@ -3,18 +3,18 @@
 /*
  * Autoseeded ARC4-based PRNG.  Reasonably unpredictable
  */
-var seedRandom = require('seedrandom');
-var randomGenerator = seedRandom();
+const seedRandom = require('seedrandom');
+const randomGenerator = seedRandom();
 
-var Player = function () {
-	this._diceValues = [];
+const Player = function () {
+  this._diceValues = [];
 };
 
 Player.prototype.rollDice = function () {
-	var noOfDice = 5;
-	for ( var i = 0; i < noOfDice; i++ ) {
-		this._diceValues.push(Math.ceil(randomGenerator() * 5));
-	}
+  var noOfDice = 5;
+  for ( var i = 0; i < noOfDice; i++ ) {
+    this._diceValues.push(Math.ceil(randomGenerator() * 5));
+  }
 };
 
 module.exports = Player;
